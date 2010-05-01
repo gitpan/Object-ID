@@ -5,7 +5,7 @@ use 5.10.0;
 use strict;
 use warnings;
 
-use version; our $VERSION = qv("v0.0.1");
+use version; our $VERSION = qv("v0.0.2");
 
 use Hash::Util::FieldHash;
 
@@ -157,6 +157,16 @@ references of destroyed objects, as demonstrated by this code snippet:
 
 This will print, for example, C<< Object's reference is
 Foo=HASH(0x803704) >> three times.
+
+
+=head1 LICENSE
+
+Copyright 2010, Michael G Schwern <schwern@pobox.com>.
+
+This program is free software; you can redistribute it and/or
+modify it under the same terms as Perl itself.
+
+See L<http://www.perl.com/perl/misc/Artistic.html>
 
 
 =head1 THANKS
