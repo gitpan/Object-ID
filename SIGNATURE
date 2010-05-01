@@ -1,0 +1,38 @@
+This file contains message digests of all files listed in MANIFEST,
+signed via the Module::Signature module, version 0.61.
+
+To verify the content in this distribution, first make sure you have
+Module::Signature installed, then type:
+
+    % cpansign -v
+
+It will check each file's integrity, as well as the signature's
+validity.  If "==> Signature verified OK! <==" is not displayed,
+the distribution may already have been compromised, and you should
+not run its Makefile.PL or Build.PL.
+
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+SHA1 893aa2038b35266055d32e4906a6e5227df41327 .perlcriticrc
+SHA1 b1792a796e85dfbf8a74b4d1ad41ad32ddea48bb .perltidyrc
+SHA1 412fc9f5372b2552bf3372b25a1d8cfa4826660d Build.PL
+SHA1 161193c828abeba024205773ca33fe526e9a4cca Changes
+SHA1 73a8fe5293ce01fedcba5885a58783507ba0e0b7 MANIFEST
+SHA1 9cfe76fcc4bcefd01ef9abcd146e3682f0c43671 MANIFEST.SKIP
+SHA1 833f54f1e9e7e93f2df497f65f367a8bfdc4e888 META.yml
+SHA1 694273a8b00022019d741e85b87ac128a841271f lib/Object/ID.pm
+SHA1 4d36c1d5e574046d85f4ad5cad375b2a15be13ba lib/UNIVERSAL/Object/ID.pm
+SHA1 0c48cd304451ed6f7b82cad9c870981a44d6a92d t/00compile.t
+SHA1 2285e395d39771a7554aae46aff6991e0096f942 t/destroy.t
+SHA1 33325fa08e39a7c0c92720ac51fb71d4cb3e20fd t/immutable.t
+SHA1 edf20baf017122f5c7ac77b50416302698ec0b66 t/role.t
+SHA1 9b4bb21b54a701e2f5e26a005f4721019aa826d6 t/universal.t
+SHA1 83cb8b8988721d987a096d44a132ae84ac821959 t/uuid.t
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2.0.13 (Darwin)
+
+iEYEARECAAYFAkvcUPUACgkQWMohlhD1Qyf9NACeO+bgAZNFVot0ZuzRkopQA6Ex
+hlAAoNkPI1gzuazscTYFm64QFxfpGXPD
+=uysV
+-----END PGP SIGNATURE-----
