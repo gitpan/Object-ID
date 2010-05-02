@@ -5,9 +5,10 @@ use 5.10.0;
 use strict;
 use warnings;
 
-use version; our $VERSION = qv("v0.0.4");
+use version; our $VERSION = qv("v0.0.5");
 
 use Hash::Util::FieldHash;
+use Sub::Name qw(subname);
 
 # Even though we're not using Exporter, be polite for introspection purposes
 our @EXPORT = qw(object_id object_uuid);
@@ -15,9 +16,15 @@ our @EXPORT = qw(object_id object_uuid);
 sub import {
     my $caller = caller;
 
-    no strict 'refs';
-    *{$caller.'::object_id'}   = \&object_id;
-    *{$caller.'::object_uuid'} = \&object_uuid;
+    for my $method (qw<object_id object_uuid>) {
+        my $name = "$caller\::$method";
+        no strict 'refs';
+        # In a client class using namespace::autoclean, the exported methods
+        # are indistinguishable from exported functions, and therefore get
+        # autocleaned out of existence.  So use subname() to rename them as
+        # things that namespace::autoclean will interpret as methods.
+        *$name = subname($name, \&$method);
+    }
 }
 
 
@@ -29,12 +36,14 @@ sub import {
         my $self = shift;
 
         state $last_id = "a";
-        return exists $IDs{$self} ? $IDs{$self} : ($IDs{$self} = ++$last_id);
+
+        # This is 15% faster than ||=
+        return $IDs{$self} if exists $IDs{$self};
+        return $IDs{$self} = ++$last_id;
     }
 }
 
 
-# All glory to Vincent Pit for coming up with this implementation
 {
     Hash::Util::FieldHash::fieldhash(my %UUIDs);
 
@@ -47,7 +56,8 @@ sub import {
             Carp::croak("object_uuid() requires Data::UUID");
         }
 
-        return exists $UUIDs{$self} ? $UUIDs{$self} : ($UUIDs{$self} = $ug->create_str);
+        return $UUIDs{$self} if exists $UUIDs{$self};
+        return $UUIDs{$self} = $ug->create_str;
     }
 }
 
@@ -74,6 +84,7 @@ structure or contents.  Its features are:
     * Does not change with the object's contents
     * Is O(1) to calculate (ie. doesn't matter how big the object is)
     * The id is unique for the life of the process
+    * The id is always a true value
 
 
 =head1 USAGE
@@ -157,6 +168,16 @@ references of destroyed objects, as demonstrated by this code snippet:
 
 This will print, for example, C<< Object's reference is
 Foo=HASH(0x803704) >> three times.
+
+
+=head2 How much memory does it use?
+
+Very little.
+
+Object::ID stores the ID and address of each object you've asked the
+ID of.  Once the object has been destroyed it no longer stores it.  In
+other words, you only pay for what you use.  When you're done with it,
+you don't pay for it any more.
 
 
 =head1 LICENSE
