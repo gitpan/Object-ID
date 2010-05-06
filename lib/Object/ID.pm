@@ -1,13 +1,14 @@
 package Object::ID;
 
-use 5.10.0;
+use 5.8.8;
 
 use strict;
 use warnings;
 
-use version; our $VERSION = qv("v0.0.5");
+use version; our $VERSION = qv("v0.1.0");
 
-use Hash::Util::FieldHash;
+# Over 2x faster than Hash::Util::FieldHash
+use Hash::FieldHash qw(fieldhashes);
 use Sub::Name qw(subname);
 
 # Even though we're not using Exporter, be polite for introspection purposes
@@ -30,34 +31,37 @@ sub import {
 
 # All glory to Vincent Pit for coming up with this implementation
 {
-    Hash::Util::FieldHash::fieldhash(my %IDs);
+    fieldhashes \my(%IDs, %UUIDs);
 
+    my $Last_ID = "a";
     sub object_id {
         my $self = shift;
 
-        state $last_id = "a";
-
         # This is 15% faster than ||=
         return $IDs{$self} if exists $IDs{$self};
-        return $IDs{$self} = ++$last_id;
+        return $IDs{$self} = ++$Last_ID;
     }
-}
 
+    if ( eval { require Data::UUID } ) {
+        my $UG;
 
-{
-    Hash::Util::FieldHash::fieldhash(my %UUIDs);
+        *object_uuid = sub {
+            my $self = shift;
 
-    sub object_uuid {
-        my $self = shift;
+            # Because the mere presense of a Data::UUID object will
+            # cause problems with threads, don't initialize it until
+            # absolutely necessary.
+            $UG ||= Data::UUID->new;
 
-        state $ug = eval { require Data::UUID; Data::UUID->new; };
-        if( !$ug ) {
+            return $UUIDs{$self} if exists $UUIDs{$self};
+            return $UUIDs{$self} = $UG->create_str;
+        }
+    }
+    else {
+        *object_uuid = sub {
             require Carp;
             Carp::croak("object_uuid() requires Data::UUID");
-        }
-
-        return $UUIDs{$self} if exists $UUIDs{$self};
-        return $UUIDs{$self} = $ug->create_str;
+        };
     }
 }
 

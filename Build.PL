@@ -1,6 +1,6 @@
 #!/usr/bin/perl -w
 
-use 5.10.0;
+use 5.8.8;
 
 use strict;
 use lib 'inc';
@@ -33,11 +33,13 @@ my $builder = MyBuilder->new(
 
     build_requires      => {
         'Test::More'        => 0.88,    # for done_testing
+        version             => '0.80',
     },
 
     requires             => {
-        perl            => '5.10.0',    # for Hash::Util::FieldHash
-        "Sub::Name"     => '0.03',
+        perl                    => '5.8.8',
+        "Sub::Name"             => '0.03',
+        'Hash::FieldHash'       => '0.10',
     },
 
     auto_features => {

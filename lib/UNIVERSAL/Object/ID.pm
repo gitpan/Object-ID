@@ -1,11 +1,11 @@
 package UNIVERSAL::Object::ID;
 
-use 5.10.0;
+use 5.8.8;
 
 use strict;
 use warnings;
 
-use version; our $VERSION = qv("v0.0.5");
+use version; our $VERSION = qv("v0.1.0");
 
 {
     package UNIVERSAL;
@@ -30,13 +30,15 @@ UNIVERSAL::Object::ID - Supply a unique object identifier to every object
 Loading UNIVERSAL::Object::ID makes the C<< Object::ID >> role
 available to every object.
 
-Use at your own risk, polluting UNIVERSAL is not to be taken likely.
+Use at your own risk, polluting UNIVERSAL is not to be taken lightly.
 The best place to use this module is in your own personal or internal
-use code rather than a widely distributed software library.
+use code rather than a widely distributed software library.  Or you
+can use L<Method::Lexical> to safely apply the UNIVERSAL effect to
+just your lexical scope.
 
 =head1 SEE ALSO
 
-L<Object::ID>
+L<Object::ID>, L<Method::Lexical>
 
 =cut
 
