@@ -1,5 +1,5 @@
 This file contains message digests of all files listed in MANIFEST,
-signed via the Module::Signature module, version 0.61.
+signed via the Module::Signature module, version 0.68.
 
 To verify the content in this distribution, first make sure you have
 Module::Signature installed, then type:
@@ -16,16 +16,17 @@ Hash: SHA1
 
 SHA1 893aa2038b35266055d32e4906a6e5227df41327 .perlcriticrc
 SHA1 b1792a796e85dfbf8a74b4d1ad41ad32ddea48bb .perltidyrc
-SHA1 6c096544a0b3d6907d1b6422724c7884c3e782b8 Build.PL
-SHA1 22fd0c28f79a5576d792dbc40e8206268e159ba0 Changes
-SHA1 e7bc66fca43fc9dba4c777e7a60ef6fc102a8b02 LICENSE
-SHA1 a2418d06847b3dbc3704be36ed2be078a3263c63 MANIFEST
-SHA1 9cfe76fcc4bcefd01ef9abcd146e3682f0c43671 MANIFEST.SKIP
-SHA1 ef31c57a4f987aec078797b818ab25af35da0c39 META.yml
-SHA1 afce7909d883e6d4c0e46f415f9a2a46631e4d63 README
+SHA1 1eae695235653dfdeabd343fe83a5add17b11aa2 Build.PL
+SHA1 cb8a49cc2d81f261790f2ebe7a6a3078643cbe0a Changes
+SHA1 61c777820e70593419593ecb9680c5839f611595 LICENSE
+SHA1 f893af334763db3d658d5b349bb2e663d341a016 MANIFEST
+SHA1 f1ae8c236fb9a727ebec5bb70de2d4dd6e2f7c28 MANIFEST.SKIP
+SHA1 40776f8cbaeba3b797e589ef92e94625725c896b META.json
+SHA1 b33fbea74a2b31ec8dbe7a94727f736bf09848b2 META.yml
+SHA1 ab5e9533c1d96ad404782c4df0bdef47ceacd052 README
 SHA1 d51b8f82f755d2e8e456ad5e0b7195e92d07a3e4 inc/MyBuilder.pm
-SHA1 8879a55c3337a7e709bdf7da27727ca313f8843f lib/Object/ID.pm
-SHA1 89340de09498963c72b87e6d1ff4687e31fd9354 lib/UNIVERSAL/Object/ID.pm
+SHA1 54002aac4b97d60a2d3333f3c888776e18c194ed lib/Object/ID.pm
+SHA1 3a6091e59f96fef0cf76d3c76a78e72057a18167 lib/UNIVERSAL/Object/ID.pm
 SHA1 0c48cd304451ed6f7b82cad9c870981a44d6a92d t/00compile.t
 SHA1 3f78f31d53e9c28f8367da10ba3056ab73dac263 t/autoclean.t
 SHA1 2285e395d39771a7554aae46aff6991e0096f942 t/destroy.t
@@ -36,9 +37,9 @@ SHA1 a5224407abd07c1ff17f5f606bccd48ad354bed5 t/threads.t
 SHA1 552f3aacb7e6b655d6b17170b1239c286a786bbc t/universal.t
 SHA1 83cb8b8988721d987a096d44a132ae84ac821959 t/uuid.t
 -----BEGIN PGP SIGNATURE-----
-Version: GnuPG v2.0.13 (Darwin)
+Version: GnuPG v2.0.18 (Darwin)
 
-iEYEARECAAYFAkv1qE0ACgkQWMohlhD1QydEBwCfUpvLqtZENQgmC8jBdyGkBmm0
-hxQAn1reE3KGIR0R8LF7d8UXbyYw0SHa
-=vvtc
+iEYEARECAAYFAk5+svMACgkQWMohlhD1QyfYkQCfeW89O98Ggi+fUN08S9NgOMUg
+Q4AAnjmFT7Jw6dDywEf8hjUZPOXatech
+=/Efu
 -----END PGP SIGNATURE-----
